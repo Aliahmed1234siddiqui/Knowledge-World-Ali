@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Knowledge World – Learn, Play & Explore</title>
+  <meta name="description" content="Knowledge World is a magical 3D learning playground for kids: animals, fruits, alphabets, numbers, tables and fun educational games.">
+  <meta name="theme-color" content="#6C5CE7">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌍</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/games.css">
+</head>
+<body>
+
+  <!-- Loading screen -->
+  <div id="loader" class="loader">
+    <div class="loader-planet">🌍</div>
+    <p class="loader-text">Loading your world…</p>
+  </div>
+
+  <!-- Confetti layer -->
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+  <!-- Navigation -->
+  <header class="nav" id="nav">
+    <div class="container nav-inner">
+      <a href="#/" class="brand" aria-label="Knowledge World home">
+        <span class="brand-globe">🌍</span>
+        <span class="brand-text">Knowledge<span>World</span></span>
+      </a>
+
+      <nav class="nav-links" id="nav-links" aria-label="Main">
+        <a href="#/" class="nav-link" data-route="/">Home</a>
+        <a href="#/worlds" class="nav-link" data-route="/worlds">Worlds</a>
+        <a href="#/alphabet" class="nav-link" data-route="/alphabet">ABC</a>
+        <a href="#/numbers" class="nav-link" data-route="/numbers">123</a>
+        <a href="#/tables" class="nav-link" data-route="/tables">Tables</a>
+        <a href="#/games" class="nav-link" data-route="/games">Games</a>
+        <a href="#/progress" class="nav-link" data-route="/progress">My Stars</a>
+      </nav>
+
+      <div class="nav-tools">
+        <div class="search" id="search">
+          <input type="search" id="search-input" placeholder="Search a word…" aria-label="Search words" autocomplete="off">
+          <div class="search-results" id="search-results"></div>
+        </div>
+        <button class="btn-icon" id="sound-toggle" title="Sound on/off" aria-label="Toggle sound">🔊</button>
+        <button class="btn-icon" id="theme-toggle" title="Day / Night" aria-label="Toggle theme">🌙</button>
+        <a href="#/progress" class="star-chip" id="star-chip" title="Your stars">⭐ <b id="star-count">0</b></a>
+        <a href="#/progress" class="avatar-chip" id="avatar-chip" title="Your profile">🦊</a>
+        <button class="btn-icon nav-burger" id="nav-burger" aria-label="Menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- App -->
+  <main id="app" class="app"></main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <div class="brand"><span class="brand-globe">🌍</span><span class="brand-text">Knowledge<span>World</span></span></div>
+        <p>A safe, joyful place where imagination and learning go hand in hand.</p>
+      </div>
+      <div class="footer-cols">
+        <div>
+          <h4>Learn</h4>
+          <a href="#/worlds">All Worlds</a>
+          <a href="#/alphabet">Alphabet</a>
+          <a href="#/numbers">Numbers</a>
+          <a href="#/tables">Tables</a>
+        </div>
+        <div>
+          <h4>Play</h4>
+          <a href="#/games/memory">Memory Match</a>
+          <a href="#/games/quiz">Quiz Blitz</a>
+          <a href="#/games/spelling">Spelling Bee</a>
+          <a href="#/games/math">Math Race</a>
+        </div>
+        <div>
+          <h4>More</h4>
+          <a href="#/progress">My Progress</a>
+          <a href="#/about">About</a>
+          <a href="#/about#parents">For Parents</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Knowledge World · Made with ❤️ for curious kids</span>
+    </div>
+  </footer>
+
+  <div id="modal-root" class="modal-root"></div>
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+
+  <!-- 3D engine -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- App scripts (load order matters) -->
+  <script src="js/config.js"></script>
+  <script src="js/data/categories.js"></script>
+  <script src="js/data/alphabet.js"></script>
+  <script src="js/data/badges.js"></script>
+  <script src="js/core/utils.js"></script>
+  <script src="js/core/sound.js"></script>
+  <script src="js/core/store.js"></script>
+  <script src="js/core/ui.js"></script>
+  <script src="js/core/router.js"></script>
+  <script src="js/core/hero3d.js"></script>
+  <script src="js/games/_shared.js"></script>
+  <script src="js/games/memory.js"></script>
+  <script src="js/games/quiz.js"></script>
+  <script src="js/games/spelling.js"></script>
+  <script src="js/games/math.js"></script>
+  <script src="js/games/oddone.js"></script>
+  <script src="js/games/catch.js"></script>
+  <script src="js/pages/home.js"></script>
+  <script src="js/pages/worlds.js"></script>
+  <script src="js/pages/learn.js"></script>
+  <script src="js/pages/alphabet.js"></script>
+  <script src="js/pages/numbers.js"></script>
+  <script src="js/pages/tables.js"></script>
+  <script src="js/pages/games.js"></script>
+  <script src="js/pages/progress.js"></script>
+  <script src="js/pages/about.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

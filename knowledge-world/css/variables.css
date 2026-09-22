@@ -1,0 +1,75 @@
+/* ==========================================================================
+   Knowledge World – Design Tokens
+   Change colours, fonts and spacing here; every component reads from these.
+   ========================================================================== */
+:root {
+  /* Fonts */
+  --font-head: 'Fredoka', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Nunito', 'Segoe UI', system-ui, sans-serif;
+
+  /* Brand palette */
+  --primary: #6C5CE7;
+  --primary-dark: #4F3FD1;
+  --secondary: #FF6B81;
+  --accent: #FFC940;
+  --mint: #00D2A8;
+  --sky: #4FB3FF;
+  --orange: #FF9F43;
+  --pink: #F368E0;
+  --lime: #7ED957;
+
+  /* Surfaces */
+  --bg: #F4F6FF;
+  --bg-2: #EEF1FF;
+  --surface: #FFFFFF;
+  --surface-2: #F7F8FF;
+  --text: #1F2544;
+  --text-2: #3D4468;
+  --muted: #6B7290;
+  --border: rgba(31, 37, 68, 0.08);
+  --glass: rgba(255, 255, 255, 0.72);
+
+  /* Elevation */
+  --shadow-sm: 0 2px 8px rgba(31, 37, 68, 0.06);
+  --shadow: 0 10px 30px rgba(31, 37, 68, 0.10);
+  --shadow-lg: 0 24px 60px rgba(31, 37, 68, 0.18);
+  --shadow-primary: 0 12px 30px rgba(108, 92, 231, 0.35);
+
+  /* Shape */
+  --radius-sm: 12px;
+  --radius: 20px;
+  --radius-lg: 28px;
+  --radius-pill: 999px;
+
+  /* Layout */
+  --nav-h: 74px;
+  --container: 1200px;
+  --gutter: 20px;
+
+  /* Motion */
+  --ease-bounce: cubic-bezier(.34, 1.56, .64, 1);
+  --ease: cubic-bezier(.22, .61, .36, 1);
+  --t-fast: .18s;
+  --t: .32s;
+
+  /* Hero */
+  --hero-grad: radial-gradient(1200px 600px at 20% 10%, #3b2f9a 0%, transparent 60%),
+               radial-gradient(900px 500px at 90% 80%, #0e5a8a 0%, transparent 60%),
+               linear-gradient(135deg, #16123f 0%, #22185f 50%, #0b2a52 100%);
+}
+
+/* Night mode */
+[data-theme="dark"] {
+  --bg: #0E1128;
+  --bg-2: #141838;
+  --surface: #1A1F45;
+  --surface-2: #202659;
+  --text: #EEF0FF;
+  --text-2: #C9CDF0;
+  --muted: #9AA1CC;
+  --border: rgba(255, 255, 255, 0.09);
+  --glass: rgba(20, 24, 56, 0.72);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.5);
+}
