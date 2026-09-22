@@ -41,8 +41,8 @@
           </div>
 
           <div class="nav-actions">
-            <button class="btn btn-ghost">Log in</button>
-            <button class="btn btn-primary">Start free</button>
+            <button class="btn btn-ghost" data-action="login" id="nav-login">Log in</button>
+            <button class="btn btn-primary" data-action="signup" id="nav-signup">Start free</button>
           </div>
         </nav>
       </header>
@@ -59,8 +59,8 @@
             </p>
 
             <div class="hero-actions">
-              <button class="btn btn-primary">Explore adventures</button>
-              <button class="btn btn-secondary">Watch demo</button>
+              <button class="btn btn-primary" data-action="explore">Explore adventures</button>
+              <button class="btn btn-secondary" data-action="demo">Watch demo</button>
             </div>
 
             <div class="mini-stats">
@@ -239,6 +239,7 @@
 
             <div id="memory-game" class="memory-game" aria-label="Memory game"></div>
             <button id="restart-game" class="btn btn-primary btn-full">Play again</button>
+            <a class="btn btn-secondary btn-full game-more" href="knowledge-world/index.html#/games">More games in Knowledge World →</a>
           </div>
         </section>
 
@@ -311,7 +312,7 @@
                 <li>Creative learning paths</li>
                 <li>Weekly progress report</li>
               </ul>
-              <button class="btn btn-secondary btn-full">Try starter</button>
+              <button class="btn btn-secondary btn-full" data-action="plan" data-plan="Explorer" data-price="$9/mo">Try starter</button>
             </article>
 
             <article class="price-card featured">
@@ -322,7 +323,7 @@
                 <li>STEM challenges</li>
                 <li>Game rewards</li>
               </ul>
-              <button class="btn btn-primary btn-full">Most popular</button>
+              <button class="btn btn-primary btn-full" data-action="plan" data-plan="Adventure" data-price="$19/mo">Most popular</button>
             </article>
 
             <article class="price-card">
@@ -333,7 +334,7 @@
                 <li>Mentor check-ins</li>
                 <li>Advanced creative labs</li>
               </ul>
-              <button class="btn btn-secondary btn-full">Go premium</button>
+              <button class="btn btn-secondary btn-full" data-action="plan" data-plan="Champion" data-price="$29/mo">Go premium</button>
             </article>
           </div>
         </section>
@@ -359,10 +360,50 @@
             <a href="#pricing">Pricing</a>
           </div>
 
-          <button class="btn btn-primary">Join today</button>
+          <button class="btn btn-primary" data-action="signup">Join today</button>
         </div>
       </footer>
     </div>
+
+    <!-- Modal (login / sign up / plan) -->
+    <div class="modal-root" id="modal-root" aria-hidden="true">
+      <div class="modal-backdrop" data-close></div>
+      <div class="modal glass" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <button class="modal-close" data-close aria-label="Close">✕</button>
+        <span class="eyebrow" id="modal-eyebrow">Welcome</span>
+        <h3 id="modal-title">Create your free account</h3>
+        <p id="modal-text">Join Knowledge World and start your child's learning adventure.</p>
+
+        <form id="account-form" novalidate>
+          <input type="hidden" id="form-mode" value="signup">
+          <input type="hidden" id="form-plan" value="">
+          <label class="field" id="field-name">
+            <span>Parent name</span>
+            <input type="text" id="f-name" placeholder="e.g. Ayesha" autocomplete="name" maxlength="40">
+          </label>
+          <label class="field" id="field-child">
+            <span>Child's name</span>
+            <input type="text" id="f-child" placeholder="e.g. Ali" maxlength="40">
+          </label>
+          <label class="field">
+            <span>Email</span>
+            <input type="email" id="f-email" placeholder="you@example.com" autocomplete="email" required>
+          </label>
+          <label class="field">
+            <span>Password</span>
+            <input type="password" id="f-pass" placeholder="At least 6 characters" autocomplete="current-password" minlength="6" required>
+          </label>
+          <p class="form-error" id="form-error" role="alert"></p>
+          <button type="submit" class="btn btn-primary btn-full" id="form-submit">Start free</button>
+          <p class="form-switch">
+            <span id="switch-text">Already have an account?</span>
+            <button type="button" class="link-btn" id="switch-mode">Log in</button>
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <div class="toast-root" id="toast-root" aria-live="polite"></div>
 
     <script src="script.js"></script>
   </body>

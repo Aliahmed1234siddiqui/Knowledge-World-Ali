@@ -858,3 +858,54 @@ a {
     align-items: flex-start;
   }
 }
+
+/* ==========================================================================
+   Modal, forms, toasts, misc (added for working buttons)
+   ========================================================================== */
+.hidden { display: none !important; }
+body.modal-open { overflow: hidden; }
+.nav-links a.active { color: var(--text); background: rgba(255, 255, 255, 0.08); border-radius: 999px; }
+.game-more { margin-top: 10px; text-align: center; text-decoration: none; }
+
+.modal-root { position: fixed; inset: 0; z-index: 100; display: none; }
+.modal-root.open { display: grid; place-items: center; padding: 20px; }
+.modal-backdrop { position: absolute; inset: 0; background: rgba(4, 9, 18, 0.72); backdrop-filter: blur(10px); animation: fadeIn 0.25s ease both; }
+.modal {
+  position: relative; width: min(460px, 100%); max-height: calc(100vh - 40px); overflow: auto;
+  padding: 34px 30px 26px; border-radius: var(--radius); background: var(--panel-strong);
+  border: 1px solid var(--border); box-shadow: var(--shadow); animation: popIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.modal h3 { font-size: 1.6rem; margin: 10px 0 6px; }
+.modal p { color: var(--muted); margin-bottom: 18px; }
+.modal-close {
+  position: absolute; top: 14px; right: 14px; width: 38px; height: 38px; border-radius: 50%;
+  border: 1px solid var(--border); background: rgba(255, 255, 255, 0.04); color: var(--text); font-size: 1rem;
+}
+.modal-close:hover { background: rgba(255, 119, 180, 0.25); transform: rotate(90deg); }
+
+.field { display: block; margin-bottom: 14px; }
+.field span { display: block; font-size: 0.85rem; color: var(--muted); margin-bottom: 6px; font-weight: 500; }
+.field input {
+  width: 100%; padding: 0.85rem 1rem; border-radius: 14px; border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.04); color: var(--text); font: inherit; transition: border-color 0.2s, box-shadow 0.2s;
+}
+.field input:focus { outline: none; border-color: var(--primary-2); box-shadow: 0 0 0 4px rgba(57, 208, 255, 0.15); }
+.form-error { min-height: 1.2em; color: var(--pink); font-size: 0.9rem; margin: 0 0 10px !important; }
+.form-switch { text-align: center; margin: 14px 0 0 !important; font-size: 0.92rem; }
+.link-btn { background: none; border: 0; color: var(--primary-2); font-weight: 600; padding: 0 4px; text-decoration: underline; }
+.link-btn:hover { color: var(--text); }
+form.shake { animation: shake 0.45s both; }
+
+.toast-root { position: fixed; left: 50%; bottom: 26px; transform: translateX(-50%); z-index: 120; display: flex; flex-direction: column; gap: 10px; align-items: center; pointer-events: none; }
+.toast {
+  padding: 0.8rem 1.3rem; border-radius: 999px; font-weight: 600; max-width: min(92vw, 520px); text-align: center;
+  background: var(--panel-strong); color: var(--text); border: 1px solid var(--border); box-shadow: var(--shadow);
+  opacity: 0; transform: translateY(16px) scale(0.95); transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.toast.show { opacity: 1; transform: none; }
+.toast-success { background: linear-gradient(135deg, rgba(82, 224, 164, 0.95), rgba(57, 208, 255, 0.95)); color: #04261a; border-color: transparent; }
+.toast-error { background: linear-gradient(135deg, var(--pink), #ff9f68); color: #3a0a1e; border-color: transparent; }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes popIn { from { opacity: 0; transform: translateY(18px) scale(0.94); } to { opacity: 1; transform: none; } }
+@keyframes shake { 10%, 90% { transform: translateX(-2px); } 20%, 80% { transform: translateX(4px); } 30%, 50%, 70% { transform: translateX(-6px); } 40%, 60% { transform: translateX(6px); } }

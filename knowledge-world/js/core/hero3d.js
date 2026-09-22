@@ -18,9 +18,12 @@ KW.hero3d = {
 
     const scene = new T.Scene();
     const camera = new T.PerspectiveCamera(50, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
+    // On wide screens the camera looks at a point left of the planet, so the
+    // planet sits on the right half and leaves room for the headline.
     const wide = window.innerWidth > 800;
-    const baseX = wide ? -3.2 : 0, baseY = wide ? 0.2 : 1.4;
-    camera.position.set(baseX, baseY, 9);
+    const baseX = wide ? -3.4 : 0, baseY = wide ? 0.2 : 1.6;
+    const lookX = wide ? -3.4 : 0, lookY = wide ? 0 : 0.6;
+    camera.position.set(baseX, baseY, 9.5);
 
     // Lights
     scene.add(new T.AmbientLight(0xffffff, 0.55));
@@ -64,9 +67,11 @@ KW.hero3d = {
     const shapes = [];
     for (let i = 0; i < 34; i++) {
       const m = new T.Mesh(geos[i % geos.length](), new T.MeshStandardMaterial({ color: palette[i % palette.length], flatShading: true, roughness: 0.5 }));
-      const x = (Math.random() - 0.5) * 18, y = (Math.random() - 0.5) * 9, z = -6 + Math.random() * 7;
-      // keep them away from the planet centre
-      if (Math.hypot(x, y) < 3.2) { m.position.set(x + (x < 0 ? -3.5 : 3.5), y, z); } else m.position.set(x, y, z);
+      let x = (Math.random() - 0.5) * 20, y = (Math.random() - 0.5) * 10, z = -7 + Math.random() * 7;
+      // keep them away from the planet centre and (on wide screens) the headline area on the left
+      if (Math.hypot(x, y) < 3.4) x += x < 0 ? -3.5 : 3.5;
+      if (wide && x < -1 && x > -9 && z > -3.5) z = -3.5 - Math.random() * 3;
+      m.position.set(x, y, z);
       m.userData = { baseY: m.position.y, speed: 0.4 + Math.random() * 0.8, off: Math.random() * Math.PI * 2, rx: (Math.random() - 0.5) * 0.02, ry: (Math.random() - 0.5) * 0.02 };
       scene.add(m); shapes.push(m);
     }
@@ -111,7 +116,7 @@ KW.hero3d = {
       stars.rotation.y = t * 0.01;
       camera.position.x += ((baseX + mx * 0.8) - camera.position.x) * 0.04;
       camera.position.y += ((baseY - my * 0.5) - camera.position.y) * 0.04;
-      camera.lookAt(0, 0, 0);
+      camera.lookAt(lookX + mx * 0.3, lookY - my * 0.2, 0);
       renderer.render(scene, camera);
     };
     loop();
